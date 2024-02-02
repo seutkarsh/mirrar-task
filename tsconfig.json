@@ -6,8 +6,14 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "noEmit": false,
+    "useUnknownInCatchVariables": false,
   },
   "include": ["./src/**/*"],
-  "exclude": ["node_modules","tests"]
+  "exclude": ["node_modules", "tests"],
 }
