@@ -80,8 +80,7 @@ export class ProductService {
       });
     }
     product.markModified("variants");
-    const updatedProduct = await product.save();
-    return updatedProduct;
+    return await product.save();
   }
 
   async deleteProductById(productId: string) {
@@ -100,8 +99,7 @@ export class ProductService {
       });
     });
     product.markModified("variants");
-    const updatedProduct = await product.save();
-    return updatedProduct;
+    return await product.save();
   }
 
   async deleteVariant(variantDetails: IDeleteVariantData) {
@@ -115,8 +113,7 @@ export class ProductService {
       }
     });
     product.markModified("variants");
-    const updatedProduct = await product.save();
-    return updatedProduct;
+    return await product.save();
   }
 }
 
