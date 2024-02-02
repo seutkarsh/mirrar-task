@@ -3,12 +3,16 @@ import { ResponseWrapper } from "./ResponseWrapper";
 import { Container } from "typedi";
 import {
   IAddProductsData,
+  IAddVariantData,
+  IDeleteVariantData,
   IUpdateProductsData,
   ProductService,
 } from "../services/ProductService";
 import { IProductSchema } from "../schemas/product";
 import {
   addProductValidator,
+  addVariantValidator,
+  deleteVariantValidator,
   getProductValidator,
   updateProductValidator,
 } from "./productValidator";
@@ -83,6 +87,38 @@ router.delete(
     try {
       const userId: string = req.query.productId!.toString();
       const data = await productService.deleteProductById(userId);
+      response.setData(data);
+    } catch (e) {
+      response.setError(e.message);
+    }
+    res.json(response);
+  },
+);
+
+router.post(
+  "/variant",
+  addVariantValidator,
+  async (req: Request, res: Response) => {
+    const response = new ResponseWrapper();
+    try {
+      const variantDetails: IAddVariantData = req.body;
+      const data = await productService.addVariant(variantDetails);
+      response.setData(data);
+    } catch (e) {
+      response.setError(e.message);
+    }
+    res.json(response);
+  },
+);
+
+router.delete(
+  "/variant",
+  deleteVariantValidator,
+  async (req: Request, res: Response) => {
+    const response = new ResponseWrapper();
+    try {
+      const variantDetails: IDeleteVariantData = req.body;
+      const data = await productService.deleteVariant(variantDetails);
       response.setData(data);
     } catch (e) {
       response.setError(e.message);

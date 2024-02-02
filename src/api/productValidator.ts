@@ -54,3 +54,26 @@ export const updateProductValidator = [
     .isNumeric()
     .withMessage("Variant stockCount must be a number"),
 ];
+
+export const addVariantValidator = [
+  check("productId").isMongoId().withMessage("Invalid productId"),
+
+  check("variants").isArray().withMessage("Variants must be an array"),
+  check("variants.*.sku")
+    .isString()
+    .withMessage("Variant SKU must be a string"),
+  check("variants.*.name")
+    .isString()
+    .withMessage("Variant name must be a string"),
+  check("variants.*.additionalCost")
+    .isNumeric()
+    .withMessage("Variant additionalCost must be a number"),
+  check("variants.*.stockCount")
+    .isNumeric()
+    .withMessage("Variant stockCount must be a number"),
+];
+
+export const deleteVariantValidator = [
+  check("productId").isMongoId().withMessage("Invalid productId"),
+  check("skus").isArray().withMessage("skus must be an array"),
+];

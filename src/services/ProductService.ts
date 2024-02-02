@@ -89,6 +89,35 @@ export class ProductService {
     await this.productSchema.findOneAndDelete({ _id: productId });
     return { message: "Product Deleted Successfully" };
   }
+
+  async addVariant(variantDetails: IAddVariantData) {
+    const product = await this.getProductById(variantDetails.productId);
+    variantDetails.variants.forEach((variant) => {
+      product.variants.set(variant.sku, {
+        name: variant.name,
+        additionalCost: variant.additionalCost,
+        stockCount: variant.stockCount,
+      });
+    });
+    product.markModified("variants");
+    const updatedProduct = await product.save();
+    return updatedProduct;
+  }
+
+  async deleteVariant(variantDetails: IDeleteVariantData) {
+    const product = await this.getProductById(variantDetails.productId);
+    variantDetails.skus.forEach((sku) => {
+      const deleted: boolean = product.variants.delete(sku);
+      if (!deleted) {
+        throw new Error(
+          `Variant with SKU '${sku}' not found. Delete Operation Cancelled`,
+        );
+      }
+    });
+    product.markModified("variants");
+    const updatedProduct = await product.save();
+    return updatedProduct;
+  }
 }
 
 enum Errors {
@@ -119,4 +148,18 @@ export interface IUpdateProductsData {
     additionalCost?: number;
     stockCount?: number;
   }[];
+}
+
+export interface IAddVariantData {
+  productId: string;
+  variants: {
+    sku: string;
+    name: string;
+    additionalCost: number;
+    stockCount: number;
+  }[];
+}
+export interface IDeleteVariantData {
+  productId: string;
+  skus: string[];
 }
