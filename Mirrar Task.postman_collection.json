@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "886d9a42-27c7-4376-a04a-1dddd2b8f1a4",
+		"name": "Mirrar Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18101477"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/health",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Test-Product-1\",\r\n    \"description\": \"Test Product description-1\",\r\n    \"price\":300,\r\n    \"variants\":[\r\n        {\"sku\":\"sku-001\",\r\n        \"name\":\"Variant-1\",\r\n        \"additionalCost\":50,\r\n        \"stockCount\":500},\r\n         {\"sku\":\"sku-002\",\r\n        \"name\":\"Variant-2\",\r\n        \"additionalCost\":10,\r\n        \"stockCount\":250}\r\n    ]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/product",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product & Vairants",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\":\"65bcc66e707364cb5b41864e\",\r\n    \"name\":\"Test-Product-Updated-1\",\r\n    \"description\": \"Test Product description-1\",\r\n    \"price\":350,\r\n    \"variants\":[\r\n        {\"sku\":\"sku-001\",\r\n        \"name\":\"Variant-11\",\r\n        \"additionalCost\":60,\r\n        \"stockCount\":540},\r\n         {\"sku\":\"sku-002\",\r\n        \"name\":\"Variant-122\",\r\n        \"additionalCost\":10,\r\n        \"stockCount\":260},\r\n         {\"sku\":\"sku-003\",\r\n        \"name\":\"Variant-122\",\r\n        \"additionalCost\":10,\r\n        \"stockCount\":260}\r\n    ]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/product",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/product/?productId=65bcc6fa707364cb5b418650",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"product",
+						""
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "65bcc6fa707364cb5b418650"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Variant in Existing Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\":\"65bcc66e707364cb5b41864e\",\r\n    \"skus\":[\r\n        \"sku-001\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/variant",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"variant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Variant in Existing Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": \"65bcc66e707364cb5b41864e\",\r\n    \"variants\": [\r\n        {\r\n            \"sku\": \"sku-001\",\r\n            \"name\": \"Variant-141\",\r\n            \"additionalCost\": 60,\r\n            \"stockCount\": 540\r\n        },\r\n        {\r\n            \"sku\": \"sku-004\",\r\n            \"name\": \"Variant-1r1\",\r\n            \"additionalCost\": 30,\r\n            \"stockCount\": 54\r\n        },\r\n        {\r\n            \"sku\": \"sku-003\",\r\n            \"name\": \"Variant-1rr1\",\r\n            \"additionalCost\": 6,\r\n            \"stockCount\": 40\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/variant",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"variant"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://mirrar-task-api.onrender.com/api/product?productId=65bcc6fa707364cb5b418650",
+					"protocol": "https",
+					"host": [
+						"mirrar-task-api",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"product"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "65bcc6fa707364cb5b418650"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
