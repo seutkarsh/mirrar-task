@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "npm install && npx tsc",
-    "start": "npm run build && node ./dist/index.js"
+    "start": "node ./dist/index.js"
   },
   "keywords": [],
   "author": "",
